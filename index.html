@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>何金宝 | 插画与视觉作品集</title>
+    <meta
+      name="description"
+      content="何金宝插画与视觉作品集，包含原创插画、绘本与AI辅助视觉探索项目。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Noto+Sans+SC:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="mesh" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="brand" href="#top">何金宝</a>
+      <nav>
+        <a href="#work">作品</a>
+        <a href="#about">关于</a>
+        <a href="#contact">联系</a>
+      </nav>
+      <a class="resume" href="./assets/resume-he-jinbao.pdf" target="_blank" rel="noreferrer">简历 PDF</a>
+    </header>
+
+    <main id="top">
+      <section class="hero section">
+        <p class="tag">ILLUSTRATION · AI VISUAL EXPLORATION</p>
+        <h1>用视觉把复杂信息变成可感知的体验。</h1>
+        <p class="intro">
+          我是广西师范大学商业插画本科在读，专注角色设定、叙事插画与绘本创作。
+          当前求职方向：插画设计 / 角色设计 / 视觉设计。
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#work">查看精选作品</a>
+          <a class="btn ghost" href="#contact">联系我</a>
+        </div>
+      </section>
+
+      <section class="section quick-info">
+        <article>
+          <h3>求职意向</h3>
+          <p>插画设计 / 角色设计 / 视觉设计</p>
+        </article>
+        <article>
+          <h3>教育背景</h3>
+          <p>广西师范大学 · 商业插画（2022.09-至今）</p>
+        </article>
+        <article>
+          <h3>成绩表现</h3>
+          <p>GPA 3.67/5.0 · 专业排名前 20%</p>
+        </article>
+      </section>
+
+      <section id="work" class="section">
+        <div class="section-head">
+          <h2>精选项目</h2>
+          <div class="filters" id="filters"></div>
+        </div>
+        <div class="grid" id="project-grid"></div>
+      </section>
+
+      <section id="about" class="section about">
+        <h2>关于我</h2>
+        <div class="about-grid">
+          <article>
+            <h3>能力方向</h3>
+            <p>角色设定、叙事插画、绘本创作、风格化视觉表达。</p>
+          </article>
+          <article>
+            <h3>工具栈</h3>
+            <p>CSP / Photoshop / Midjourney / Stable Diffusion。</p>
+          </article>
+          <article>
+            <h3>工作方式</h3>
+            <p>可将 AI 草图与手绘流程结合，快速输出多版本并持续迭代。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact">
+        <h2>联系</h2>
+        <p>邮箱：<a href="mailto:1844106306@qq.com">1844106306@qq.com</a></p>
+        <p>手机：13737776722</p>
+      </section>
+    </main>
+
+    <footer>
+      <p>© <span id="year"></span> 何金宝作品集</p>
+    </footer>
+
+    <template id="project-card-template">
+      <article class="card">
+        <div class="thumb-wrap">
+          <img class="thumb" alt="" loading="lazy" />
+        </div>
+        <div class="card-body">
+          <p class="meta"></p>
+          <h3></h3>
+          <p class="desc"></p>
+          <ul class="tags"></ul>
+          <a class="link-btn" href="#">进入项目子页面</a>
+        </div>
+      </article>
+    </template>
+
+    <script src="./projects-data.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>

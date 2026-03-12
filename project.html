@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>项目详情 | 何金宝作品集</title>
+    <meta name="description" content="何金宝作品集项目详情页" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Noto+Sans+SC:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="mesh" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="brand" href="./index.html">何金宝</a>
+      <nav>
+        <a href="./index.html#work">全部项目</a>
+        <a href="./index.html#about">关于</a>
+        <a href="./index.html#contact">联系</a>
+      </nav>
+      <a class="resume" href="./assets/resume-he-jinbao.pdf" target="_blank" rel="noreferrer">简历 PDF</a>
+    </header>
+
+    <main class="section project-page" id="project-page" hidden>
+      <a class="back-link" href="./index.html#work">← 返回项目列表</a>
+      <p class="project-meta" id="project-meta"></p>
+      <h1 id="project-title"></h1>
+      <p class="project-summary" id="project-summary"></p>
+
+      <div class="project-tags" id="project-tags"></div>
+
+      <section class="project-copy">
+        <article>
+          <h2>项目背景</h2>
+          <p id="project-challenge"></p>
+        </article>
+        <article>
+          <h2>我的角色</h2>
+          <p id="project-role"></p>
+        </article>
+        <article>
+          <h2>过程拆解</h2>
+          <ul id="project-process"></ul>
+        </article>
+        <article>
+          <h2>结果与复盘</h2>
+          <p id="project-outcome"></p>
+        </article>
+      </section>
+
+      <section>
+        <h2>项目图片</h2>
+        <div class="project-gallery" id="project-gallery"></div>
+      </section>
+    </main>
+
+    <main class="section project-empty" id="project-empty" hidden>
+      <h1>项目不存在</h1>
+      <p>链接参数无效，或项目已被移除。</p>
+      <a class="btn primary" href="./index.html#work">返回首页查看项目</a>
+    </main>
+
+    <script src="./projects-data.js"></script>
+    <script src="./project.js"></script>
+  </body>
+</html>
