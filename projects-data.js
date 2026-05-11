@@ -1,5 +1,28 @@
 window.PROJECTS = [
   {
+    slug: "ordinary-ancient-sounds",
+    title: "寻常古音",
+    category: "毕设",
+    year: "2026",
+    description: "毕业设计项目，围绕传统声音与日常生活记忆展开视觉叙事。",
+    tags: ["Graduation Project", "Visual Narrative", "Traditional Culture"],
+    challenge: "需要把抽象的声音、记忆与地域文化转化为可连续观看的视觉画面。",
+    role: "负责主题调研、视觉设定、画面构图、插画绘制与最终呈现。",
+    process: [
+      "梳理主题关键词与视觉线索，确定系列画面的叙事方向。",
+      "统一色彩、构图与画面节奏，让多张作品保持整体感。",
+      "完成高精度插画输出，并整理为可用于作品集展示的项目页面。"
+    ],
+    outcome: "形成 4 张完整系列作品，可作为毕业设计与作品集重点项目展示。",
+    preview: "./assets/covers/ordinary-ancient-sounds/cover.jpg",
+    images: [
+      "./assets/images/ordinary-ancient-sounds/01.jpg",
+      "./assets/images/ordinary-ancient-sounds/02.jpg",
+      "./assets/images/ordinary-ancient-sounds/03.jpg",
+      "./assets/images/ordinary-ancient-sounds/04.jpg"
+    ]
+  },
+  {
     slug: "zhujia-garden",
     title: "朱家花园系列插画",
     category: "插画",
@@ -15,10 +38,10 @@ window.PROJECTS = [
       "重构工笔线条与色彩节奏，统一系列画面的气质与叙事。"
     ],
     outcome: "完成可系列化延展的双幅作品，作为重点作品用于求职展示。",
-    preview: "./assets/covers/zhujia-garden-cover.jpg",
+    preview: "./assets/covers/zhujia-garden/cover.jpg",
     images: [
-      "./assets/images/zhujia-garden-01.jpg",
-      "./assets/images/zhujia-garden-02.jpg"
+      "./assets/images/zhujia-garden/01.jpg",
+      "./assets/images/zhujia-garden/02.jpg"
     ]
   },
   {
@@ -36,8 +59,8 @@ window.PROJECTS = [
       "使用 CSP 绘制，并用 Photoshop 做色彩校准与氛围统一。"
     ],
     outcome: "形成高完成度绘本案例，可扩展为角色衍生与系列化视觉内容。",
-    preview: "./assets/covers/yellowflower-cover.jpg",
-    images: ["./assets/images/picturebook-yellowflower-01.jpg"]
+    preview: "./assets/covers/yellowflower-book/cover.jpg",
+    images: ["./assets/images/yellowflower-book/01.jpg"]
   },
   {
     slug: "penguin-series",
@@ -54,11 +77,11 @@ window.PROJECTS = [
       "统一主色调并在局部做跳色强化视觉记忆。"
     ],
     outcome: "形成可连续浏览的儿插系列，适合绘本和IP设定方向投递。",
-    preview: "./assets/covers/method-cover.jpg",
+    preview: "./assets/covers/penguin-series/cover.jpg",
     images: [
-      "./assets/images/penguin-01.jpg",
-      "./assets/images/penguin-02.jpg",
-      "./assets/images/penguin-03.jpg"
+      "./assets/images/penguin-series/01.jpg",
+      "./assets/images/penguin-series/02.jpg",
+      "./assets/images/penguin-series/03.jpg"
     ]
   },
   {
@@ -76,18 +99,18 @@ window.PROJECTS = [
       "回顾归档并筛选代表作，形成可投递的作品组。"
     ],
     outcome: "积累多题材插画作品，补齐简历中“风格广度+完成度”的说服力。",
-    preview: "./assets/covers/ai-intern-cover.png",
+    preview: "./assets/covers/other-illustrations/cover.jpg",
     images: [
-      "./assets/images/other-358.png",
-      "./assets/images/other-doll-02.png",
-      "./assets/images/other-birthday-02.png",
-      "./assets/images/other-untitled-01.png",
-      "./assets/images/other-12.png",
-      "./assets/images/other-bird.png",
-      "./assets/images/other-258.png",
-      "./assets/images/other-002.png",
-      "./assets/images/other-582.png",
-      "./assets/images/other-999.png"
+      "./assets/images/other-illustrations/01-358.jpg",
+      "./assets/images/other-illustrations/02-doll.jpg",
+      "./assets/images/other-illustrations/03-birthday.jpg",
+      "./assets/images/other-illustrations/04-untitled.jpg",
+      "./assets/images/other-illustrations/05-12.jpg",
+      "./assets/images/other-illustrations/06-bird.jpg",
+      "./assets/images/other-illustrations/07-258.jpg",
+      "./assets/images/other-illustrations/08-002.jpg",
+      "./assets/images/other-illustrations/09-582.jpg",
+      "./assets/images/other-illustrations/10-999.jpg"
     ]
   }
 ];

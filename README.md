@@ -17,9 +17,29 @@ python3 -m http.server 8080
 
 然后访问：`http://localhost:8080`
 
-## 3. 接入 Sanity
+## 3. 手动新增作品
 
-### 3.1 Sanity 项目信息
+每个项目单独一个文件夹，封面和详情图分开放：
+
+```text
+assets/covers/项目名/cover.jpg
+assets/images/项目名/01.jpg
+assets/images/项目名/02.jpg
+```
+
+现在已有项目：
+
+- `zhujia-garden`
+- `yellowflower-book`
+- `penguin-series`
+- `ordinary-ancient-sounds`
+- `other-illustrations`
+
+新增作品时，复制一个 `projects-data.js` 里的项目块，改 `slug`、标题、文案、封面路径和图片路径即可。
+
+## 4. 接入 Sanity
+
+### 4.1 Sanity 项目信息
 
 当前已经接好的项目：
 
@@ -32,7 +52,7 @@ window.SANITY_CONFIG = {
 
 后台地址：`https://jinbao-portfolio-studio.sanity.studio/`
 
-### 3.2 启动 Sanity 后台
+### 4.2 启动 Sanity 后台
 
 ```bash
 cd /Users/shiningkimm/Documents/codex/projects/20260313-sister-portfolio/sanity
@@ -42,7 +62,7 @@ npm run dev
 
 后台模型在 `sanity/schemaTypes/project.js`，支持新增、删除和调整作品项目。
 
-### 3.3 允许网站读取数据
+### 4.3 允许网站读取数据
 
 在 Sanity 项目设置里添加 CORS Origin：
 
@@ -52,7 +72,7 @@ npm run dev
 
 公开作品集不需要在前端放 token。
 
-## 4. 图片策略
+## 5. 图片策略
 
 - 封面建议统一比例（16:10）
 - 妹妹可以上传较大的原图
@@ -71,18 +91,18 @@ image: {
 }
 ```
 
-## 5. 仍可手动维护
+## 6. 仍可手动维护
 
 如果暂时不接 Sanity，继续编辑 `projects-data.js` 也能正常使用。
 
-## 6. 上线（Vercel）
+## 7. 上线（Vercel）
 
 - 用 GitHub 账号登录 Vercel
 - 选择这个仓库，直接 Deploy
 - 得到公网链接后，回到 Sanity 添加 CORS Origin
 - 之后妹妹在 Sanity 后台改内容，网站会直接读取最新发布内容
 
-## 7. 后续升级（可选）
+## 8. 后续升级（可选）
 
 - 项目页增加“上一张/下一张”翻图和全屏预览
 - 接入自定义域名（如姓名拼音）
