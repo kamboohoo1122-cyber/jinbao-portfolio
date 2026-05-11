@@ -1,14 +1,21 @@
-const projects = window.PROJECTS || [];
-
 const grid = document.querySelector("#project-grid");
 const filtersContainer = document.querySelector("#filters");
 const template = document.querySelector("#project-card-template");
+const emptyState = document.querySelector("#project-empty");
 
-const categories = ["全部", ...new Set(projects.map((item) => item.category))];
+let projects = [];
+let categories = ["全部"];
 let currentCategory = "全部";
 
 function renderFilters() {
   filtersContainer.innerHTML = "";
+
+  if (projects.length === 0) {
+    filtersContainer.setAttribute("hidden", "");
+    return;
+  }
+
+  filtersContainer.removeAttribute("hidden");
 
   categories.forEach((category) => {
     const button = document.createElement("button");
@@ -30,6 +37,14 @@ function renderProjects() {
     currentCategory === "全部"
       ? projects
       : projects.filter((project) => project.category === currentCategory);
+
+  if (filtered.length === 0) {
+    emptyState.removeAttribute("hidden");
+    grid.setAttribute("hidden", "");
+  } else {
+    emptyState.setAttribute("hidden", "");
+    grid.removeAttribute("hidden");
+  }
 
   filtered.forEach((project) => {
     const node = template.content.cloneNode(true);
@@ -60,5 +75,12 @@ function renderProjects() {
 }
 
 document.querySelector("#year").textContent = String(new Date().getFullYear());
-renderFilters();
-renderProjects();
+
+async function init() {
+  projects = await window.loadProjects();
+  categories = ["全部", ...new Set(projects.map((item) => item.category).filter(Boolean))];
+  renderFilters();
+  renderProjects();
+}
+
+init();

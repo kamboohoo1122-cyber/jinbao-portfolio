@@ -1,5 +1,3 @@
-const projects = window.PROJECTS || [];
-
 const page = document.querySelector("#project-page");
 const empty = document.querySelector("#project-empty");
 const meta = document.querySelector("#project-meta");
@@ -14,11 +12,8 @@ const gallery = document.querySelector("#project-gallery");
 
 const params = new URLSearchParams(window.location.search);
 const slug = params.get("slug");
-const project = projects.find((item) => item.slug === slug);
 
-if (!project) {
-  empty.hidden = false;
-} else {
+function renderProject(project) {
   page.hidden = false;
   document.title = `${project.title} | 何金宝作品集`;
 
@@ -58,3 +53,17 @@ if (!project) {
     gallery.appendChild(figure);
   });
 }
+
+async function init() {
+  const projects = await window.loadProjects();
+  const project = projects.find((item) => item.slug === slug);
+
+  if (!project) {
+    empty.hidden = false;
+    return;
+  }
+
+  renderProject(project);
+}
+
+init();
