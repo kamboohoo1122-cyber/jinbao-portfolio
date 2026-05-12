@@ -30,6 +30,10 @@ body {
   line-height: 1.6;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 .mesh {
   position: fixed;
   inset: -30% -10% auto;
@@ -442,11 +446,109 @@ footer {
   background: #fff;
 }
 
+.project-image-button {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.project-image-button:focus-visible {
+  outline: 3px solid var(--accent-2);
+  outline-offset: -3px;
+}
+
 .project-image-card img {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  grid-template-columns: minmax(44px, 1fr) minmax(0, auto) minmax(44px, 1fr);
+  align-items: center;
+  justify-items: center;
+  padding: 4.5rem 1.2rem 1.2rem;
+  background: rgba(23, 19, 18, 0.88);
+}
+
+.lightbox-frame {
+  grid-column: 2;
+  margin: 0;
+  max-width: min(1280px, 84vw);
+  max-height: 84vh;
+  text-align: center;
+}
+
+.lightbox-frame img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(84vh - 2.2rem);
+  object-fit: contain;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 22px 80px rgba(0, 0, 0, 0.42);
+}
+
+.lightbox-frame figcaption {
+  margin-top: 0.7rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.9rem;
+}
+
+.lightbox-close,
+.lightbox-nav {
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.lightbox-close:hover,
+.lightbox-nav:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.lightbox-close:focus-visible,
+.lightbox-nav:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 999px;
+  font-size: 1.65rem;
+  line-height: 1;
+}
+
+.lightbox-nav {
+  width: 3rem;
+  height: 3.8rem;
+  border-radius: 999px;
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.lightbox-prev {
+  grid-column: 1;
+}
+
+.lightbox-next {
+  grid-column: 3;
 }
 
 .project-empty {
@@ -458,5 +560,34 @@ footer {
   .project-copy,
   .project-gallery {
     grid-template-columns: 1fr;
+  }
+
+  .lightbox {
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    gap: 0.75rem;
+    padding: 4.8rem 0.8rem 1rem;
+  }
+
+  .lightbox-frame {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    max-width: 96vw;
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    grid-row: 2;
+    width: 100%;
+    height: 2.8rem;
+    border-radius: 8px;
+  }
+
+  .lightbox-prev {
+    grid-column: 1;
+  }
+
+  .lightbox-next {
+    grid-column: 2;
   }
 }

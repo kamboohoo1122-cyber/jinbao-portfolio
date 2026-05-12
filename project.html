@@ -56,6 +56,16 @@
         <h2>项目图片</h2>
         <div class="project-gallery" id="project-gallery"></div>
       </section>
+
+      <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" hidden>
+        <button class="lightbox-close" id="lightbox-close" type="button" aria-label="关闭大图">×</button>
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" type="button" aria-label="上一张">‹</button>
+        <figure class="lightbox-frame">
+          <img id="lightbox-image" alt="" />
+          <figcaption id="lightbox-caption"></figcaption>
+        </figure>
+        <button class="lightbox-nav lightbox-next" id="lightbox-next" type="button" aria-label="下一张">›</button>
+      </div>
     </main>
 
     <main class="section project-empty" id="project-empty" hidden>
