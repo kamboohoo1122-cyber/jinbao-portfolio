@@ -463,9 +463,24 @@ footer {
 
 .project-image-card img {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 4 / 3;
   display: block;
   object-fit: cover;
+}
+
+.project-image-caption {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.85rem 0.95rem 1rem;
+}
+
+.project-image-caption strong {
+  font-size: 0.98rem;
+}
+
+.project-image-caption span {
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
 .lightbox {

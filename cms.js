@@ -64,7 +64,16 @@
     );
     url.searchParams.set("query", query);
 
-    const response = await fetch(url);
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), config.cmsTimeoutMs || 2500);
+
+    let response;
+    try {
+      response = await fetch(url, { signal: controller.signal });
+    } finally {
+      window.clearTimeout(timeout);
+    }
+
     if (!response.ok) {
       throw new Error(`Sanity 数据读取失败：${response.status}`);
     }
@@ -89,7 +98,13 @@
     }
 
     try {
-      return mergeProjects(await fetchSanityProjects(), fallbackProjects);
+      const cmsProjects = await fetchSanityProjects();
+
+      if (config.contentSource === "sanity") {
+        return cmsProjects;
+      }
+
+      return mergeProjects(cmsProjects, fallbackProjects);
     } catch (error) {
       console.warn(error);
       return fallbackProjects;

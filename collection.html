@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>作品板块 | 何金宝作品集</title>
+    <meta name="description" content="何金宝作品集板块页" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Noto+Sans+SC:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="mesh" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="brand" href="./index.html">何金宝</a>
+      <nav>
+        <a href="./index.html#work">全部项目</a>
+        <a href="./index.html#about">关于</a>
+        <a href="./index.html#contact">联系</a>
+      </nav>
+      <a class="resume" href="./assets/resume-he-jinbao.pdf" target="_blank" rel="noreferrer">简历 PDF</a>
+    </header>
+
+    <main class="section project-page" id="collection-page" hidden>
+      <a class="back-link" href="./index.html#work">返回项目列表</a>
+      <p class="project-meta" id="collection-meta"></p>
+      <h1 id="collection-title"></h1>
+      <p class="project-summary" id="collection-summary"></p>
+      <div class="project-tags" id="collection-tags"></div>
+      <section>
+        <h2>子项目</h2>
+        <div class="grid collection-grid" id="collection-grid"></div>
+      </section>
+    </main>
+
+    <main class="section project-empty" id="collection-empty" hidden>
+      <h1>板块不存在</h1>
+      <p>链接参数无效，或板块已被移除。</p>
+      <a class="btn primary" href="./index.html#work">返回首页查看项目</a>
+    </main>
+
+    <template id="project-card-template">
+      <article class="card">
+        <div class="thumb-wrap">
+          <img class="thumb" alt="" loading="lazy" />
+        </div>
+        <div class="card-body">
+          <p class="meta"></p>
+          <h3></h3>
+          <p class="desc"></p>
+          <ul class="tags"></ul>
+          <a class="link-btn" href="#">查看子项目</a>
+        </div>
+      </article>
+    </template>
+
+    <script src="./collections-data.js?v=aigc-1"></script>
+    <script src="./collection.js?v=aigc-1"></script>
+  </body>
+</html>

@@ -7,6 +7,14 @@ let projects = [];
 let categories = ["全部"];
 let currentCategory = "全部";
 
+function imageCount(project) {
+  if (project.type === "collection") {
+    return `${project.items.length} 个子项目`;
+  }
+
+  return `${project.images.length} 张`;
+}
+
 function renderFilters() {
   filtersContainer.innerHTML = "";
 
@@ -57,18 +65,23 @@ function renderProjects() {
 
     img.src = project.preview || project.images[0];
     img.alt = `${project.title} 预览图`;
-    meta.textContent = `${project.category} · ${project.year} · ${project.images.length} 张`;
+    meta.textContent = `${project.category} · ${project.year} · ${imageCount(project)}`;
     title.textContent = project.title;
     desc.textContent = project.description;
 
-    project.tags.forEach((tag) => {
+    (project.tags || []).forEach((tag) => {
       const li = document.createElement("li");
       li.textContent = tag;
       tags.appendChild(li);
     });
 
-    linkButton.href = `./project.html?slug=${encodeURIComponent(project.slug)}`;
-    linkButton.textContent = `进入项目子页面（${project.images.length} 张）`;
+    if (project.type === "collection") {
+      linkButton.href = `./collection.html?slug=${encodeURIComponent(project.slug)}`;
+      linkButton.textContent = `进入板块（${project.items.length} 个子项目）`;
+    } else {
+      linkButton.href = `./project.html?slug=${encodeURIComponent(project.slug)}`;
+      linkButton.textContent = `进入项目子页面（${project.images.length} 张）`;
+    }
 
     grid.appendChild(node);
   });
@@ -77,7 +90,13 @@ function renderProjects() {
 document.querySelector("#year").textContent = String(new Date().getFullYear());
 
 async function init() {
-  projects = await window.loadProjects();
+  const singleProjects = await window.loadProjects();
+  const collections = (window.COLLECTIONS || []).map((collection) => ({
+    ...collection,
+    type: "collection"
+  }));
+
+  projects = [...singleProjects, ...collections];
   categories = ["全部", ...new Set(projects.map((item) => item.category).filter(Boolean))];
   renderFilters();
   renderProjects();

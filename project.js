@@ -9,6 +9,7 @@ const role = document.querySelector("#project-role");
 const process = document.querySelector("#project-process");
 const outcome = document.querySelector("#project-outcome");
 const gallery = document.querySelector("#project-gallery");
+const backLink = document.querySelector(".back-link");
 const lightbox = document.querySelector("#lightbox");
 const lightboxImage = document.querySelector("#lightbox-image");
 const lightboxCaption = document.querySelector("#lightbox-caption");
@@ -21,15 +22,33 @@ const slug = params.get("slug");
 let activeProject = null;
 let activeImageIndex = 0;
 
+function getImage(item) {
+  if (typeof item === "string") {
+    return {
+      src: item,
+      title: "",
+      description: ""
+    };
+  }
+
+  return {
+    src: item.src,
+    title: item.title || "",
+    description: item.description || ""
+  };
+}
+
 function updateLightbox() {
   if (!activeProject) {
     return;
   }
 
-  const src = activeProject.images[activeImageIndex];
-  lightboxImage.src = src;
-  lightboxImage.alt = `${activeProject.title} 第 ${activeImageIndex + 1} 张大图`;
-  lightboxCaption.textContent = `${activeProject.title} · ${activeImageIndex + 1} / ${activeProject.images.length}`;
+  const image = getImage(activeProject.images[activeImageIndex]);
+  lightboxImage.src = image.src;
+  lightboxImage.alt = image.title || `${activeProject.title} 第 ${activeImageIndex + 1} 张大图`;
+  lightboxCaption.textContent = image.title
+    ? `${image.title} · ${activeImageIndex + 1} / ${activeProject.images.length}`
+    : `${activeProject.title} · ${activeImageIndex + 1} / ${activeProject.images.length}`;
   lightboxPrev.hidden = activeProject.images.length < 2;
   lightboxNext.hidden = activeProject.images.length < 2;
 }
@@ -63,6 +82,11 @@ function renderProject(project) {
   page.hidden = false;
   document.title = `${project.title} | 何金宝作品集`;
 
+  if (project.parentSlug && project.parentTitle) {
+    backLink.href = `./collection.html?slug=${encodeURIComponent(project.parentSlug)}`;
+    backLink.textContent = `返回 ${project.parentTitle}`;
+  }
+
   meta.textContent = `${project.category} · ${project.year} · 共 ${project.images.length} 张`;
   title.textContent = project.title;
   summary.textContent = project.description;
@@ -86,13 +110,14 @@ function renderProject(project) {
   });
 
   gallery.innerHTML = "";
-  project.images.forEach((src, index) => {
+  project.images.forEach((imageItem, index) => {
+    const image = getImage(imageItem);
     const figure = document.createElement("figure");
     figure.className = "project-image-card";
 
     const img = document.createElement("img");
-    img.src = src;
-    img.alt = `${project.title} 第 ${index + 1} 张`;
+    img.src = image.src;
+    img.alt = image.title || `${project.title} 第 ${index + 1} 张`;
     img.loading = index < 2 ? "eager" : "lazy";
 
     const button = document.createElement("button");
@@ -103,6 +128,26 @@ function renderProject(project) {
 
     button.appendChild(img);
     figure.appendChild(button);
+
+    if (image.title || image.description) {
+      const caption = document.createElement("figcaption");
+      caption.className = "project-image-caption";
+
+      if (image.title) {
+        const captionTitle = document.createElement("strong");
+        captionTitle.textContent = image.title;
+        caption.appendChild(captionTitle);
+      }
+
+      if (image.description) {
+        const captionText = document.createElement("span");
+        captionText.textContent = image.description;
+        caption.appendChild(captionText);
+      }
+
+      figure.appendChild(caption);
+    }
+
     gallery.appendChild(figure);
   });
 }
@@ -137,7 +182,14 @@ document.addEventListener("keydown", (event) => {
 
 async function init() {
   const projects = await window.loadProjects();
-  const project = projects.find((item) => item.slug === slug);
+  const collectionProjects = (window.COLLECTIONS || []).flatMap((collection) =>
+    (collection.items || []).map((item) => ({
+      ...item,
+      parentSlug: collection.slug,
+      parentTitle: collection.title
+    }))
+  );
+  const project = [...projects, ...collectionProjects].find((item) => item.slug === slug);
 
   if (!project) {
     empty.hidden = false;
